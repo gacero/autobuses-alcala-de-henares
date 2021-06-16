@@ -46,7 +46,7 @@
 				minZoom: 0,
 				dragging: false,
 				id: 'mapbox.streets',
-				//accessToken: 'pk.eyJ1IjoiZ3VpZ25hciIsImEiOiJjanNtM2Y4dzkzMDZkNDl0YjFhZTJ0ZnlpIn0.NHivlvdA6l8lHKjftn_ULA'
+				////accessToken: 'pk.eyJ1IjoiZ3VpZ25hciIsImEiOiJjanNtM2Y4dzkzMDZkNDl0YjFhZTJ0ZnlpIn0.NHivlvdA6l8lHKjftn_ULA'
 			});
 			
 		var map = L.map('map', {
@@ -62,7 +62,7 @@
 				attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
 				dragging: false,
 				id: 'mapbox.streets',
-				//accessToken: 'pk.eyJ1IjoiZ3VpZ25hciIsImEiOiJjanNtM2Y4dzkzMDZkNDl0YjFhZTJ0ZnlpIn0.NHivlvdA6l8lHKjftn_ULA'
+				////accessToken: 'pk.eyJ1IjoiZ3VpZ25hciIsImEiOiJjanNtM2Y4dzkzMDZkNDl0YjFhZTJ0ZnlpIn0.NHivlvdA6l8lHKjftn_ULA'
 			}).addTo(map);	
 		
 		mapas_base = {"Open Street Map": osm, "PNOA":Spain_PNOA_Ortoimagen};
@@ -73,7 +73,7 @@
 				transparent: true,
 				}).addTo(map);	
 				
-		//<!--Estilos de GeoJson-->
+		////<!--Estilos de GeoJson-->
 
 		var municipiosStyle_2 = function(feature) {
 			switch (feature.properties.Nombre_Mun) {
@@ -90,7 +90,7 @@
 			"opacity": 0.7,
 		};
 		
-			//<!--FUNCION PARA ASIGNAR LOS COLORES A LAS LINEAS-->
+			////<!--FUNCION PARA ASIGNAR LOS COLORES A LAS LINEAS-->
 		var estilo_lineas = function (feature) {
 			switch (feature.properties.id) {
 				case "1A": return {color: "#FF0000"};
@@ -106,7 +106,7 @@
 				case "11": return {color: "#8C63AA"};
 			}};
 			
-			//<!--FUNCION PARA ASIGNAR LAS IMAGENES A LAS LINEAS-->
+			////<!--FUNCION PARA ASIGNAR LAS IMAGENES A LAS LINEAS-->
 		var imagen_linea = function (feature) {
 			switch (feature.properties.id) {
 				case "1A": return '<br><a href="carteles/1.jpg"><img src="carteles/1A.png" height="302" width="286"></a>';
@@ -122,7 +122,7 @@
 				case "11": return '<br><a href="carteles/11.png"><img src="carteles/11.png" height="219" width="277"></a>';
 			}};			
 			
-		//<!--Capas GeoJson---->
+		////<!--Capas GeoJson---->
 		var linea_2 = L.geoJson(linea_2, {style: estilo_lineas, onEachFeature: popup}).addTo(map);
 		var linea_3 = L.geoJson(linea_3, {style: estilo_lineas, onEachFeature: popup}).addTo(map);
 		var linea_5 = L.geoJson(linea_5, {style: estilo_lineas, onEachFeature: popup}).addTo(map);
@@ -137,13 +137,13 @@
 		
 		L.geoJson(municipios, {style: municipiosStyle_2}).addTo(map);
 		
-		//<!--Pop up para las capas GeoJson-->
+		////<!--Pop up para las capas GeoJson-->
 		function popup (feature, layer) {
 			if (feature.properties && feature.properties.id) {
 			layer.bindPopup(feature.properties.name+"<a><br></<>"+imagen_linea(feature));
 			}
 		};			
-		//<!--Título-->
+		////<!--Título-->
 		var title = L.control();
 		
 		title.onAdd = function (map) {
@@ -156,9 +156,9 @@
 		
 		title.addTo(map);
 
-		//<!--Controladores y plugins-->
+		////<!--Controladores y plugins-->
 		
-			//<!--Plugin AlmostOver-->
+		////<!--Plugin AlmostOver-->
 		map.almostOver.addLayer(linea_1);
 		map.almostOver.addLayer(linea_2);
 		map.almostOver.addLayer(linea_3);
@@ -190,21 +190,21 @@
 			e.layer.setStyle({weight: 7}).bringToFront().bindPopup(feature.properties.id).openPopup();
 			pop.layer.bindPopup("Popup si click");
 		  });
-			//<!--Fin de AlmostOver-->
+		////<!--Fin de AlmostOver-->
 		
-		var cambioe = new L.Control.Zoom({position: 'topright'});	//<!--Botones de cambio de escala-->
+		var cambioe = new L.Control.Zoom({position: 'topright'});	////<!--Botones de cambio de escala-->
 		cambioe.addTo(map);
 		
-		var mouse = new L.control.mousePosition();	//<!--Coordenadas del ratón-->
+		var mouse = new L.control.mousePosition();	////<!--Coordenadas del ratón-->
 		mouse.addTo(map);
 		
-		var barra_escala = new L.control.scale({imperial: false});	//<!--Barra de escala-->
+		var barra_escala = new L.control.scale({imperial: false});	////<!--Barra de escala-->
 		barra_escala.addTo(map);
 
 		var controlador = new L.control.layers(mapas_base, lineas);
 		controlador.addTo(map);
 		
-		//<!-- Minimapa-->
+		////<!-- Minimapa-->
 		var miniMap = new L.Control.MiniMap(osm2, {toggleDisplay: true});
 		miniMap.addTo(map);
 
